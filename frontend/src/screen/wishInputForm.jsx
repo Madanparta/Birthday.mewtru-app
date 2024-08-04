@@ -5,9 +5,12 @@ import { TbMessageCircleHeart } from "react-icons/tb";
 import { GoLink } from "react-icons/go";
 import candles from '../assets/candles.png'
 import Loader from '../components/shared/Loader';
+import { dataTrans } from '../context/dataContext';
 
 const WishInputForm = () => {
     const [loader,setLoader]=useState(false);
+
+    const dataTran = dataTrans()
 
     const handleInputs = async(e) => {
         e.preventDefault();
@@ -21,6 +24,7 @@ const WishInputForm = () => {
         try {
             
             setLoader(false);
+            dataTran?.setWishesSubmit(true)
         } catch (error) {
             setLoader(false);
         }
