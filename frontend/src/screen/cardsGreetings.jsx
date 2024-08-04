@@ -4,10 +4,13 @@ import cover from './../assets/cover.png'
 import desgin from './../assets/desgin.png'
 import paperCard from './../assets/paperCard.png'
 import gsap from 'gsap';
+import { dataTrans } from '../context/dataContext';
 
 const CardsGreetings = ({setHiddenProperty}) => {
     const greetingsCard = useRef(null);
     const greetingCover = useRef(null);
+
+    const dataTran = dataTrans();
 
     useEffect(()=>{
         const greetingCard = greetingsCard.current;
@@ -62,7 +65,7 @@ const CardsGreetings = ({setHiddenProperty}) => {
                 <img src={desgin} style={{zIndex:'10px'}} className='absolute top-0 left-0' alt="" />
                 <div className='w-full h-full flex justify-center items-center flex-col'>
                     <h2 style={{fontFamily:"Style Script",fontWeight:600}} className='text-lg'>Happy Birthday</h2>
-                    <p style={{fontFamily:"Style Script",fontWeight:600}} className='text-xl tracking-wider'>Partu<span> ..</span><span className='inline-block'><BsBalloonHeart color='red'/></span></p>
+                    <p style={{fontFamily:"Style Script",fontWeight:600}} className='text-xl tracking-wider'>{dataTran?.data?.name}<span> ..</span><span className='inline-block'><BsBalloonHeart color='red'/></span></p>
                 </div>
             </div>
         </div>

@@ -6,6 +6,7 @@ import { GoLink } from "react-icons/go";
 import candles from '../assets/candles.png'
 import Loader from '../components/shared/Loader';
 import { dataTrans } from '../context/dataContext';
+import axios from 'axios';
 
 const WishInputForm = () => {
     const [loader,setLoader]=useState(false);
@@ -20,9 +21,13 @@ const WishInputForm = () => {
         let message = fomData.get('message');
         let customeEnd = fomData.get('customeEnd');
 
-        setLoader(true);
+        setLoader(false);
         try {
             
+            const res = await axios.post('/person/storeP',{name,age,message,customeEnd});
+            if(res.status === 200){
+                dataTran?.setData(res?.data)
+            }
             setLoader(false);
             dataTran?.setWishesSubmit(true)
         } catch (error) {
@@ -39,13 +44,13 @@ const WishInputForm = () => {
                 <label htmlFor="name">
                     <CiUser size={22} color='black'/>
                 </label>
-                <input type="text" className='w-full h-full p-1 outline-none' placeholder='Name' name='name'/>
+                <input required type="text" className='w-full h-full p-1 outline-none' placeholder='Name' name='name'/>
             </div>
             <div className='border-2 flex gap-2 px-1 py-2 text-[15px] items-center rounded shadow-sm cursor-pointer'>
                 <label htmlFor="age">
                     <IoIosTimer size={22} color='black'/>
                 </label>
-                <input id='age' className='w-full h-full p-1 outline-none' type="number" placeholder='Age' name='age'/>
+                <input id='age' required className='w-full h-full p-1 outline-none' type="number" placeholder='Age' name='age'/>
             </div>
             <div className='border-2 flex gap-2 px-1 py-2 text-[15px] items-center rounded shadow-sm cursor-pointer'>
                 <label htmlFor="message">
@@ -57,7 +62,7 @@ const WishInputForm = () => {
                 <label htmlFor="slug">
                     <GoLink size={22} color='black'/>
                 </label>
-                <input id='slug' className='w-full h-full p-1 outline-none' type="text" placeholder='Slug' name='customeEnd'/>
+                <input id='slug' required className='w-full h-full p-1 outline-none' type="text" placeholder='Slug' name='customeEnd'/>
             </div>
             <div style={{
                 boxShadow:'0px 4px 3px #4F1787'
