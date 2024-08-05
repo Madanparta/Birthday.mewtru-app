@@ -11,6 +11,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import gsap from 'gsap';
 import CardsGreetings from '../screen/cardsGreetings';
+import { API_URL } from '../utils/staticContent';
 
 const WishesCreatingPage = () => {
   const [hiddenProperty,setHiddenProperty]=useState(true);
@@ -20,7 +21,6 @@ const WishesCreatingPage = () => {
   // const greetingCover = useRef(null);
   const copyClipBord = useRef(null);
    
-
   // useEffect(()=>{
   //   const greetingCard = greetingsCard.current;
   //   const greetingCov = greetingCover.current;
@@ -113,8 +113,8 @@ const WishesCreatingPage = () => {
                 <p className='text-[16px] text-gray-600 font-[400]'>Send this link:</p>
                 <div className='w-full flex gap-3 bg-gray-50 px-1 py-1 items-center h-7'>
                   <IoCopyOutline size={20}/>
-                  <CopyToClipboard text='text' onCopy={onCopy}>
-                    <p className='w-full h-full flex items-center cursor-copy'>copy here</p>
+                  <CopyToClipboard text={`${API_URL}/${dataTran?.data?.id}-${dataTran?.data?.customeEnd}`} onCopy={onCopy}>
+                    <p className='w-full h-full flex items-center cursor-copy overflow-hidden'>{`${API_URL}/${dataTran?.data?.id}-${dataTran?.data?.customeEnd}`}</p>
                   </CopyToClipboard>
                 {copy && <span className='text-[12px] font-[300] text-[#4f1787cc] absolute top-2 right-4'>copy</span>}
                 </div>

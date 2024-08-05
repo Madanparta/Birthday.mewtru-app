@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 
-app.use('/api/person',userRouter)
+app.use('/api/person',userRouter);
 
 app.listen(PORT,()=>console.log(`Backend Server Run With Port : ${PORT}`));
 
@@ -27,4 +27,4 @@ app.use((err,req,res,next)=>{
         statusCode,
         message
     })
-})
+});

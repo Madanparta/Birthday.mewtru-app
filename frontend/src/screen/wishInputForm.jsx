@@ -6,7 +6,7 @@ import { GoLink } from "react-icons/go";
 import candles from '../assets/candles.png'
 import Loader from '../components/shared/Loader';
 import { dataTrans } from '../context/dataContext';
-import axios from 'axios';
+// import axios from 'axios';
 
 const WishInputForm = () => {
     const [loader,setLoader]=useState(false);
@@ -21,13 +21,26 @@ const WishInputForm = () => {
         let message = fomData.get('message');
         let customeEnd = fomData.get('customeEnd');
 
-        setLoader(false);
+        setLoader(true);
         try {
-            
-            const res = await axios.post('/person/storeP',{name,age,message,customeEnd});
-            if(res.status === 200){
-                dataTran?.setData(res?.data)
-            }
+            const res = await fetch('http://localhost:8080/api/person/storeP', { method: 'POST',headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                  name: name,
+                  age: age,
+                  message: message,
+                  customeEnd: customeEnd
+                })
+              });
+            const data = await res.json();
+            if(data){
+                dataTran?.setData(data);
+            };
+
+            // const res = await axios.post('/person/storeP',{name,age,message,customeEnd});
+            // if(res.status === 200){
+            //     dataTran?.setData(res?.data);
+            //     console.log(res);
+            // }
             setLoader(false);
             dataTran?.setWishesSubmit(true)
         } catch (error) {
@@ -62,7 +75,7 @@ const WishInputForm = () => {
                 <label htmlFor="slug">
                     <GoLink size={22} color='black'/>
                 </label>
-                <input id='slug' required className='w-full h-full p-1 outline-none' type="text" placeholder='Slug' name='customeEnd'/>
+                <input id='slug' className='w-full h-full p-1 outline-none' type="text" placeholder='Slug' name='customeEnd'/>
             </div>
             <div style={{
                 boxShadow:'0px 4px 3px #4F1787'
