@@ -14,11 +14,6 @@ app.use(cors({origin:'http://localhost:5173',credentials:true}));
 app.use(express.json());
 // app.use(morgan("dev"));
 
-
-app.use('/',(res,req)=>{
-    res.send('server runing');
-});
-
 app.use('/api/person',userRouter);
 
 app.listen(PORT,()=>console.log(`Backend Server Run With Port : ${PORT}`));
