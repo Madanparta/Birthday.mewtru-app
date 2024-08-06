@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
-export const mongodbConnection = async(req,res,next) => {
+exports.mongodbConnection = async(req,res,next) => {
     try {
         const res = await mongoose.connect(process.env.MONGOOSE_URL);
         console.log(`DataBase Connected with : ${res.connection.host}`);

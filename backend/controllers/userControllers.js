@@ -1,7 +1,11 @@
-import {errorHandler} from '../utils/errorHandler.js';
-import UserDb from '../modules/userDB.js';
+// import {errorHandler} from '../utils/errorHandler.js';
+// import UserDb from '../modules/userDB.js';
 
-export const postUsers = async(req,res,next)=>{
+const { errorHandler } = require('../utils/errorHandler');
+const UserDb = require('../modules/userDB');
+
+
+exports.postUsers = async(req,res,next)=>{
     try {
         const {name,age,message,customeEnd} = req.body;
 
@@ -22,7 +26,7 @@ export const postUsers = async(req,res,next)=>{
         next(error);
     }
 }
-export const getUser = async(req,res,next)=>{
+exports.getUser = async(req,res,next)=>{
     try {
         const {id} = req.params;
         if(!id){
@@ -39,10 +43,10 @@ export const getUser = async(req,res,next)=>{
     }
 }
 
-export const getUsers = async(req,res,next)=>{
-    try {
-        res.send('sended')
-    } catch (error) {
-        next(error);
-    }
-}
+// export const getUsers = async(req,res,next)=>{
+//     try {
+//         res.send('sended')
+//     } catch (error) {
+//         next(error);
+//     }
+// }
