@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "creating birthday wishes app",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "build": ""
+    "build": "rm -rf dist && cp -r src dist"
   },
   "author": "Madan Parta.",
   "license": "ISC",
