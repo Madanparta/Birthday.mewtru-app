@@ -14,8 +14,7 @@ export const postUsers = async(req,res,next)=>{
         }else{
             value = Math.floor(100000 + Math.random() * 900000)
         }
-        const userDb = new UserDb({name:name,age:age,message:message,customeEnd:value})
-        await userDb.save();
+        const userDb =await UserDb.create({name:name,age:age,message:message,customeEnd:value})
 
         res.status(200).json({message:"ok",id:userDb._id,name:userDb.name,age:userDb.age,message:userDb.message,customeEnd:userDb.customeEnd});
     } catch (error) {

@@ -23,7 +23,7 @@ const WishInputForm = () => {
 
         setLoader(true);
         try {
-            const res = await fetch('http://localhost:8080/api/person/storeP', { method: 'POST',headers: {'Content-Type': 'application/json'},
+            const res = await fetch('https://birthday-mewtru-backend.onrender.com/api/person/storeP', { method: 'POST',headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                   name: name,
                   age: age,

@@ -66,7 +66,7 @@ const GreetingCard = () => {
         setLoading(true);
         async function findingUser(){
             try {
-                const res = await fetch('http://localhost:8080/api/person/'+id, { method: 'GET',headers: {'Content-Type': 'application/json'}});
+                const res = await fetch('https://birthday-mewtru-backend.onrender.com/api/person/'+id, { method: 'GET',headers: {'Content-Type': 'application/json'}});
                 const data = await res.json();
                 if(data){
                     dataTran?.setSpecialPersonData(data);
