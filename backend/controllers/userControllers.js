@@ -11,7 +11,10 @@ exports.postUsers = async(req,res,next)=>{
 
         let value;
         if(!name || !age || !message){
-            return next(errorHandler(404,'user input required'));
+            // return next(errorHandler(404,'user input required'));
+            return res.status(404).json({
+                message: 'user input required'
+            });
         };
         if(customeEnd){
             value = customeEnd
@@ -23,14 +26,20 @@ exports.postUsers = async(req,res,next)=>{
 
         res.status(200).json({message:"ok",id:userDb._id,name:userDb.name,age:userDb.age,message:userDb.message,customeEnd:userDb.customeEnd});
     } catch (error) {
-        next(error);
+        // next(error);
+        res.status(500).json({
+            message:'internal server error'
+        })
     }
 }
 exports.getUser = async(req,res,next)=>{
     try {
         const {id} = req.params;
         if(!id){
-            return next(errorHandler(404,'something went to wrong!!, try again later'));
+            // return next(errorHandler(404,'something went to wrong!!, try again later'));
+            return res.status(404).json({
+                message: 'something went to wrong!!, try again later'
+            });
         }
         const findId = id.split('-');
         // console.log(findId[0]);
@@ -39,7 +48,10 @@ exports.getUser = async(req,res,next)=>{
         
         res.status(200).json(user);
     } catch (error) {
-        next(error);
+        // next(error);
+        res.status(500).json({
+            message:'internal server error'
+        })
     }
 }
 
