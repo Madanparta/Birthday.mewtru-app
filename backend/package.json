@@ -7,8 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
-    "start": "node server.js",
-    "build": "rd /s /q dist 2>nul && copy /Y /S /E src dist"
+    "start": "node server.js"
   },
   "author": "Madan Parta.",
   "license": "ISC",
