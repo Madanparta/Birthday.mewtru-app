@@ -10,15 +10,15 @@ import cake from '../assets/cake.png';
 import light from '../assets/light.png';
 import { BsBalloonHeart } from "react-icons/bs";
 import './component.css';
+import axios from 'axios';
 
 import gsap from 'gsap';
 import FinalMessageWishes from './shared/finalTextWishesMessage';
-import { SERVER_API_URL } from '../utils/staticContent';
+import { API_URL, SERVER_API_URL } from '../utils/staticContent';
 
 const GreetingCard = () => {
     const {id} = useParams();
     const findId = id.split('-');
-    console.log(findId)
     const [level, setLevel] = useState(0);
     const [loading,setLoading] = useState(false);
     const [bluring,setBluring] = useState(false);
@@ -68,9 +68,10 @@ const GreetingCard = () => {
         setLoading(true);
         async function findingUser(){
             try {
-                const res = await fetch(SERVER_API_URL+'/api/person/'+findId[0], { method: 'GET',headers: {'Content-Type': 'application/json'}});
+                const res = await fetch(SERVER_API_URL+'/api/person/'+id, { method: 'GET',headers: {'Content-Type': 'application/json'}});
                 const data = await res.json();
                 if(data){
+                  console.log(data);
                     dataTran?.setSpecialPersonData(data);
                     setLoading(false)
                 };
@@ -103,10 +104,9 @@ const GreetingCard = () => {
             <p style={{fontFamily:"Style Script"}} className='absolute text-[15px] left-[32%] top-[18%] w-fit h-fit flex flex-col text-[white] tracking-wider'>
             <span className='text-[15px]'>Blow!</span>
             <span className='text-[8px]'>[ for your surprise ]</span>
-            <div className='flex justify-normal items-center gap-1'>
-              {dataTran?.specialPersonData?.name}
-              <BsBalloonHeart className=''/>..
-            </div>
+            
+              <span className='flex justify-center gap-1'>{dataTran?.specialPersonData?.name} <BsBalloonHeart className=''/>..</span>
+              
             </p>
 
             <img className='w-[60%] absolute top-0 left-0' src={desgin} alt="" />

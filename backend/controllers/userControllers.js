@@ -18,7 +18,6 @@ export const postUsers = async(req,res,next)=>{
         if (!userDb) {
             return next(errorHandler(404, 'somthing went wrong'));
         }
-        console.log(userDb);
 
         res.status(200).json({message:"ok",id:userDb._id,name:userDb.name,age:userDb.age,message:userDb.message,customeEnd:userDb.customeEnd});
     } catch (error) {
@@ -28,15 +27,14 @@ export const postUsers = async(req,res,next)=>{
 export const getUser = async(req,res,next)=>{
     try {
         const {id} = req.params;
-        console.log(id);
         if(!id){
-            return next(errorHandler(404,'something went to wrong!!, try again later'));
+            next(errorHandler(404,'something went to wrong!!, try again later'));
         }
         const findId = id.split('-');
 
         const user = await UserDb.findById({_id:findId[0]});
         if (!user) {
-            return next(errorHandler(404, 'User not found'));
+            next(errorHandler(404, 'User not found'));
         }
         
         res.status(200).json(user);
