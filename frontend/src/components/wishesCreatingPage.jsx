@@ -113,8 +113,8 @@ const WishesCreatingPage = () => {
                 <p className='text-[16px] text-gray-600 font-[400]'>Send this link:</p>
                 <div className='w-full flex gap-3 bg-gray-50 px-1 py-1 items-center h-7'>
                   <IoCopyOutline size={20}/>
-                  <CopyToClipboard text={`${FRONT_API_URL}/${dataTran?.data?.id}-${dataTran?.data?.customeEnd}`} onCopy={onCopy}>
-                    <p className='w-full h-full flex items-center cursor-copy overflow-hidden'>{`${FRONT_API_URL}/${dataTran?.data?.id}-${dataTran?.data?.customeEnd}`}</p>
+                  <CopyToClipboard text={`${'https://master--beeta-birthday-mewtru.netlify.app'}/${dataTran?.data?.id}-${dataTran?.data?.customeEnd}`} onCopy={onCopy}>
+                    <p className='w-full h-full flex items-center cursor-copy overflow-hidden'>{`${'https://master--beeta-birthday-mewtru.netlify.app'}/${dataTran?.data?.id}-${dataTran?.data?.customeEnd}`}</p>
                   </CopyToClipboard>
                 {copy && <span className='text-[12px] font-[300] text-[#4f1787cc] absolute top-2 right-4'>copy</span>}
                 </div>
