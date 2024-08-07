@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 
 mongodbConnection();
 
-app.use(cors({origin:['http://localhost:5173','https://beeta-birthday-mewtru.netlify.app'],credentials:true}));
+app.use(cors({origin:['http://localhost:5173','https://beeta-birthday-mewtru.onrender.com'],credentials:true}));
 app.use(express.json());
 // app.use(morgan("dev"));
 
