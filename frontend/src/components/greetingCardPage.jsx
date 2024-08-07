@@ -19,7 +19,7 @@ import { API_URL, SERVER_API_URL } from '../utils/staticContent';
 const GreetingCard = () => {
     const {id} = useParams();
     const findId = id.split('-');
-    const [level, setLevel] = useState(0);
+    const [level, setLevel] = useState(1);
     const [loading,setLoading] = useState(false);
     const [bluring,setBluring] = useState(false);
 
