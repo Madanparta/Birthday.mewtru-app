@@ -28,6 +28,7 @@ export const postUsers = async(req,res,next)=>{
 export const getUser = async(req,res,next)=>{
     try {
         const {id} = req.params;
+        console.log(id);
         if(!id){
             return next(errorHandler(404,'something went to wrong!!, try again later'));
         }

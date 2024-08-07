@@ -18,6 +18,7 @@ import { SERVER_API_URL } from '../utils/staticContent';
 const GreetingCard = () => {
     const {id} = useParams();
     const findId = id.split('-');
+    console.log(findId)
     const [level, setLevel] = useState(0);
     const [loading,setLoading] = useState(false);
     const [bluring,setBluring] = useState(false);
@@ -67,7 +68,7 @@ const GreetingCard = () => {
         setLoading(true);
         async function findingUser(){
             try {
-                const res = await fetch(`${SERVER_API_URL}/api/person/`+id, { method: 'GET',headers: {'Content-Type': 'application/json'}});
+                const res = await fetch(SERVER_API_URL+'/api/person/'+findId[0], { method: 'GET',headers: {'Content-Type': 'application/json'}});
                 const data = await res.json();
                 if(data){
                     dataTran?.setSpecialPersonData(data);
