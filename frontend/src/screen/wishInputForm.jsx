@@ -6,6 +6,7 @@ import { GoLink } from "react-icons/go";
 import candles from '../assets/candles.png'
 import Loader from '../components/shared/Loader';
 import { dataTrans } from '../context/dataContext';
+import { API_URL } from '../utils/staticContent';
 // import axios from 'axios';
 
 const WishInputForm = () => {
@@ -23,7 +24,7 @@ const WishInputForm = () => {
 
         setLoader(true);
         try {
-            const res = await fetch('https://birthday-mewtru-backend.onrender.com/api/person/storeP', { method: 'POST',headers: {'Content-Type': 'application/json'},
+            const res = await fetch(`${API_URL}/api/person/storeP`, { method: 'POST',headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                   name: name,
                   age: age,
