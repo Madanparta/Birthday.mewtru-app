@@ -13,7 +13,7 @@ import './component.css';
 
 import gsap from 'gsap';
 import FinalMessageWishes from './shared/finalTextWishesMessage';
-import { API_URL } from '../utils/staticContent';
+import { SERVER_API_URL } from '../utils/staticContent';
 
 const GreetingCard = () => {
     const {id} = useParams();
@@ -67,7 +67,7 @@ const GreetingCard = () => {
         setLoading(true);
         async function findingUser(){
             try {
-                const res = await fetch(`${API_URL}/api/person/`+id, { method: 'GET',headers: {'Content-Type': 'application/json'}});
+                const res = await fetch(`${SERVER_API_URL}/api/person/`+id, { method: 'GET',headers: {'Content-Type': 'application/json'}});
                 const data = await res.json();
                 if(data){
                     dataTran?.setSpecialPersonData(data);
