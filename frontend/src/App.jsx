@@ -43,7 +43,7 @@ const App = () => {
 
       </Routes>
 
-      <div className='absolute bottom-0 right-0 w-full h-fit px-2 py-1'>
+      <div className='w-full h-fit px-2 py-3'>
         <div className='text-[12px] font-[400] w-full h-fit text-end px-1'>
           <p className='hidden' ref={counts}><span className='text-[13px] font-semibold text-orange-500'>{!dataTran?.usersCount? <Loader/> : dataTran?.usersCount}</span> users & counting!..</p>
         </div>
