@@ -19,6 +19,7 @@ const userSchema  = new mongoose.Schema({
     },
     totalUserCount:{
         type:String,
+        default: '0001'
     }
 },{timestamps:true});
 

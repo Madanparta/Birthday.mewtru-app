@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CiUser } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { TbMessageCircleHeart } from "react-icons/tb";
@@ -7,10 +7,11 @@ import candles from '../assets/candles.png'
 import Loader from '../components/shared/Loader';
 import { dataTrans } from '../context/dataContext';
 import { SERVER_API_URL } from '../utils/staticContent';
-// import axios from 'axios';
+import gsap from 'gsap';
 
 const WishInputForm = () => {
     const [loader,setLoader]=useState(false);
+    const inputForm = useRef(null);
 
     const dataTran = dataTrans()
 
@@ -36,20 +37,27 @@ const WishInputForm = () => {
             if(data){
                 dataTran?.setData(data);
             };
-
-            // const res = await axios.post('/person/storeP',{name,age,message,customeEnd});
-            // if(res.status === 200){
-            //     dataTran?.setData(res?.data);
-            //     console.log(res);
-            // }
             setLoader(false);
             dataTran?.setWishesSubmit(true)
         } catch (error) {
             setLoader(false);
         }
-    }
+    };
+
+    useEffect(()=>{
+        const form = inputForm.current;
+        if(form){
+            gsap.fromTo(form,{
+                y:'5%',
+                duration:3,
+                display:'block'
+            },{
+                y:'0'
+            });
+        }
+    },[]);
   return (
-    <section className='w-[96%] h-fit bg-white m-auto py-4 px-2 mt-7 rounded-sm shadow relative'>
+    <section ref={inputForm}  className='w-[96%] h-fit bg-white m-auto py-4 px-2 mt-7 rounded-sm shadow relative hidden'>
       <p className='py-2 px-2 text-[14px] text-gray-800 font-thin'>Enter your special person's name, age & heartfelt speech that will appear 
         aften they blow out their candles. your also customize the URL slg. If you leave it empty, we'll make one for you.</p>
 

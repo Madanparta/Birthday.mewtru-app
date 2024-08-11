@@ -1,4 +1,4 @@
-import {errorHandler} from '../utils/errorHandler.js';
+import {errorHandler, generateNextCount} from '../utils/errorHandler.js';
 import UserDb from '../modules/userDB.js';
 
 export const postUsers = async(req,res,next)=>{
@@ -14,7 +14,12 @@ export const postUsers = async(req,res,next)=>{
         }else{
             value = Math.floor(100000 + Math.random() * 900000)
         }
-        const userDb =await UserDb.create({name:name,age:age,message:message,customeEnd:value});
+        const lastUser = await UserDb.findOne().sort({ _id: -1 });
+        let nextCount = '0001';
+        if(lastUser){
+            nextCount = generateNextCount(lastUser.totalUserCount);
+        }
+        const userDb =await UserDb.create({name:name,age:age,message:message,customeEnd:value,totalUserCount:nextCount});
         if (!userDb) {
             return next(errorHandler(404, 'somthing went wrong'));
         }
@@ -45,7 +50,17 @@ export const getUser = async(req,res,next)=>{
 
 export const getUsers = async(req,res,next)=>{
     try {
-        res.send('sended')
+        const userCount = await UserDb.countDocuments();
+        if(userCount >= 10){
+            const oldUsers = await UserDb.findOne().sort({createdAt: 1})
+            // console.log(oldUsers)
+            await oldUsers.remove();
+        }
+        const users = await UserDb.find();
+        if(!users){
+            next(errorHandler(404, 'User not found'));
+        };
+        res.status(200).json(users);
     } catch (error) {
         next(error);
     }

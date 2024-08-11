@@ -26,7 +26,6 @@ const GreetingCard = () => {
     const dataTran = dataTrans();
 
     const greetingMain = useRef(null);
-    const finalMessage = useRef(null);
     function bluringCall(){
       setTimeout(() => {
         setBluring(true);
@@ -51,19 +50,6 @@ const GreetingCard = () => {
         }
     },[dataTran?.specialPersonData]);
 
-    // final message
-    useEffect(()=>{
-      const finalText = finalMessage.current;
-      if(finalText){
-        gsap.to(finalText,{
-          y:'-40%',
-          fontSize:30,
-          duration:3,
-          rotate:-6,
-        })
-      }
-    },[]);
-
     useEffect(()=>{
         setLoading(true);
         async function findingUser(){
@@ -84,6 +70,7 @@ const GreetingCard = () => {
     },[id]);
 
     if(dataTran?.specialPersonData && dataTran?.specialPersonData._id !== findId[0])return <ErrorPage/>
+    if(loading) return <h1>loading..</h1>
   return (
     <div className={`w-full h-full celebrationpage bg-[#f5ededc4] shadow overflow-hidden`}>
 
@@ -92,7 +79,7 @@ const GreetingCard = () => {
       <div className='w-full h-[360px] flex justify-center items-end relative'>
 
         {/* final message */}
-      {level === 3 && <div style={{fontFamily:"Style Script"}} ref={finalMessage} className='text-[0px] top-[80%] absolute w-full h-full flex justify-center pt-20'>
+      {<div style={{fontFamily:"Style Script"}} className=' top-[80%] absolute w-full h-full pt-20'>
               <FinalMessageWishes messages={dataTran?.specialPersonData?.message}/>
       </div>}
         <div className='w-[250px] h-[265px] relative rotate-12'>
