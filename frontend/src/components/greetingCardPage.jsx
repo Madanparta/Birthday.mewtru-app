@@ -79,7 +79,7 @@ const GreetingCard = () => {
       <div className='w-full h-[360px] flex justify-center items-end relative'>
 
         {/* final message */}
-      {level === 1 && <div style={{fontFamily:"Style Script"}} ref={finalMessage} className='top-[80%] absolute w-full h-full flex justify-center pt-20'>
+      {level === 1 && <div style={{fontFamily:"Style Script"}} className='top-[80%] absolute w-full h-full flex justify-center pt-20'>
               <FinalMessageWishes messages={dataTran?.specialPersonData?.message}/>
       </div>}
         <div className='w-[250px] h-[265px] relative rotate-12'>
